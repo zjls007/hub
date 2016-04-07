@@ -1,7 +1,8 @@
-空格两个回车换行
+﻿空格两个回车换行
 
 克隆项目:  
-	git bash: git clone https://github.com/zjls007/hub.git  
+	git bash: git clone https://github.com/zjls007/hub.git 
+        只克隆master分支： git clone -b master https://github.com/zjls007/hub.git --single-branch 
 	eclipse: import -> projects from git -> 输入地址 -> 下一步。。。  
 导入为Maven项目：  
     eclipse: import -> existing Maven Projects  
