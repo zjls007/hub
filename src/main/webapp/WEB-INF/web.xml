@@ -11,6 +11,25 @@
 		<param-value>classpath:spring-*.xml</param-value>
 	</context-param>
 
+	<!-- h2 database -->
+	<context-param>
+		<param-name>db.url</param-name>
+		<param-value>jdbc:h2:./test</param-value>
+	</context-param>
+	<context-param>
+		<param-name>db.user</param-name>
+		<param-value>sa</param-value>
+	</context-param>
+	<context-param>
+		<param-name>db.password</param-name>
+		<param-value>sa</param-value>
+	</context-param>
+	<!-- 允许其它 机器通过ip访问数据库 -->
+	<context-param>
+		<param-name>db.tcpServer</param-name>
+		<param-value>-tcpAllowOthers</param-value>
+	</context-param>
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -37,11 +56,12 @@
 	<servlet>
         <servlet-name>H2Console</servlet-name>
         <servlet-class>org.h2.server.web.WebServlet</servlet-class>
-        <!--
         <init-param>
+        	<!-- 是否允许其它ip的电脑访问这个数据库控制台 -->
             <param-name>webAllowOthers</param-name>
-            <param-value></param-value>
+            <param-value>true</param-value>
         </init-param>
+        <!--
         <init-param>
             <param-name>trace</param-name>
             <param-value></param-value>
