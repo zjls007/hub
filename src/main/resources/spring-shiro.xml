@@ -30,15 +30,20 @@
 	        <value>
 	            # some example chain definitions:
 	            # /admin/** = authc, roles[admin]
-	            /docs/** = authc, perms[document:read]
+	            # /docs/** = authc, perms[document:read]
 	            # /** = authc
 	            # more URL-to-FilterChain definitions here
+	            # anon：不需要身份验证, authc:需要身份验证, filter有先后顺序区别
+	            /static/** = anon
+	            /console/** = anon
+	            /signIn = anon
+	            /** = authc
 	        </value>
 	    </property>
 	</bean>
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-	    <property name="realm" ref="myRealm"/>
+	    <property name="realm" ref="shiroDbRealm"/>
 	</bean>
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 	

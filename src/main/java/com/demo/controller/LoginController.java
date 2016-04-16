@@ -10,19 +10,26 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-public class IndexController {
+import com.demo.entity.User;
 
-	@RequestMapping("/")
-	public String index() {
+@Controller
+public class LoginController {
+
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+	@RequestMapping("/signIn")
+	public String signIn(User user) {
 		Subject currentUser = SecurityUtils.getSubject();
 		
-		if ( !currentUser.isAuthenticated()  || true) {
+		if ( !currentUser.isAuthenticated()) {
 		    //collect user principals and credentials in a gui specific manner 
 		    //such as username/password html form, X509 certificate, OpenID, etc.
 		    //We'll use the username/password example here since it is the most common.
 		    //(do you know what movie this is from? ;)
-		    UsernamePasswordToken token = new UsernamePasswordToken("zxj", "1232");
+		    UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassword());
 		    //this is all you have to do to support 'remember me' (no config - built in!):
 		    token.setRememberMe(true);
 		    
@@ -30,22 +37,15 @@ public class IndexController {
 		        currentUser.login( token );
 		        //if no exception, that's it, we're done!
 		    } catch ( UnknownAccountException uae ) {
-		    	System.out.println(1);
-		    	
 		        //username wasn't in the system, show them an error message?
 		    } catch ( IncorrectCredentialsException ice ) {
-		    	System.out.println(2);
 		        //password didn't match, try again?
 		    } catch ( LockedAccountException lae ) {
-		    	System.out.println(3);
 		        //account for that username is locked - can't login.  Show them a message?
-		    } 
-		     catch ( AuthenticationException ae ) {
-		    	 System.out.println(4);
+		    } catch ( AuthenticationException ae ) {
 		        //unexpected condition - error?
 		    }
 		}
 		return "index";
 	}
-	
 }
