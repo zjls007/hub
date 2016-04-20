@@ -18,13 +18,14 @@
     </style>
   </head>
   <body>
+  "${status}"
   <form action="signIn" method="post">
 	<div class="container">
         <section class="loginBox row-fluid">
           <section class="span12">
             <h2>欢迎登录</h2>
-            <p><input type="text" id="userName" placeholder="用户名"/></p>
-            <p><input type="text" id="password" placeholder="密码"/></p>
+            <p><input type="text" name="userName" placeholder="用户名"/></p>
+            <p><input type="text" name="password" placeholder="密码"/></p>
             <section class="row-fluid">
               <section class="span8 lh30"><label><input type="checkbox" name="rememberme" />下次自动登录</label></section>
           <section class="span1"><input type="submit" value="登录 " class="btn btn-primary"></section>
