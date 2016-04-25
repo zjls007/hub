@@ -6,14 +6,14 @@ import java.util.ResourceBundle;
 public class Config {
 
 #foreach($key in ${map.keySet()})
-	public static String $key = "${map.get($key)}";
+	public static final String $key;
 #end
     
 	static {
 		ResourceBundle rb = PropertyResourceBundle.getBundle("config");
 		
 #foreach($key in ${map.keySet()})  
-    	$key = rb.getString($key);
+    	$key = rb.getString("${map.get($key)}");
 #end  
 	}
 	
