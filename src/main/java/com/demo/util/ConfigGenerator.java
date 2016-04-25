@@ -1,14 +1,13 @@
 package com.demo.util;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 import org.apache.velocity.Template;
@@ -25,8 +24,11 @@ public abstract class ConfigGenerator {
 		
 		VelocityContext context = new VelocityContext();
 		
-		ResourceBundle rb = PropertyResourceBundle.getBundle("config");
-        context.put("map", genMap(rb.keySet()));
+		// 读取出有顺序的keys
+		Properties op = new OrderedProperties();
+		op.load(new FileReader(new File("src/main/resources/config.properties")));
+		
+        context.put("map", genMap(op.keySet()));
         
         Template template = Velocity.getTemplate("vm/config.vm");
         StringWriter writer = new StringWriter();
@@ -38,10 +40,10 @@ public abstract class ConfigGenerator {
 		fw.close();
 	}
 	
-	public static Map<String, String> genMap(Set<String> set) {
-		Map<String, String> map = new HashMap<String, String>();
-		for (String key : set) {
-			map.put(genKey(key), key);
+	public static Map<String, String> genMap(Set<Object> set) {
+		Map<String, String> map = new LinkedHashMap<String, String>();
+		for (Object key : set) {
+			map.put(genKey((String) key), (String) key);
 		}
 		return map;
 	}
