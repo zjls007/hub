@@ -8,7 +8,7 @@
 	<name>hub Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<spring.version>4.1.2.RELEASE</spring.version>
+		<spring.version>4.0.5.RELEASE</spring.version>
 		<cxf.version>3.0.2</cxf.version>
 		<hibernate.version>4.3.5.Final</hibernate.version>
 		<shiro.version>1.1.0</shiro.version>
@@ -144,6 +144,25 @@
 			<version>1.7</version>
 		</dependency>
 		
+		<!-- jackson-core-as和 jackson-mapper-asl配合sprinmvc的@ResponseBody将对象转换成json-->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>org.apache.logging.log4j</groupId>
+		  <artifactId>log4j-core</artifactId>
+		  <version>2.3</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -190,7 +209,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<port>81</port>
+					<port>82</port>
 					<path>/</path>
 				</configuration>
 			</plugin>
