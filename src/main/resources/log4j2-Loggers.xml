@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Loggers>
+	<Logger name="com.demo.test.A" level="info" additivity="${additivity}">
+		<AppenderRef ref="r1" />
+	</Logger>
+</Loggers>

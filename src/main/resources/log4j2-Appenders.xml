@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Appenders>
+	<RollingFile name="r1" fileName="logs/app.log"
+		filePattern="logs/$${date:yyyy-MM}/app-%d{yyyy-MM-dd}-%i.log.gz">
+		<PatternLayout>
+			<Pattern>%d %p %c [%t] (%F:%L) %m%n</Pattern>
+		</PatternLayout>
+		<Policies>
+			<TimeBasedTriggeringPolicy />
+			<!-- 单位：KB,MB,GB 超过指定大小就压缩成一个新的日志文件存档 -->
+			<SizeBasedTriggeringPolicy size="50 MB" />
+		</Policies>
+		<!-- 最多压缩多少个日志文件，默认5个 -->
+		<DefaultRolloverStrategy max="5" />
+	</RollingFile>
+
+</Appenders>
